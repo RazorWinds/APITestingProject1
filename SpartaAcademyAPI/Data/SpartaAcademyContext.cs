@@ -5,7 +5,12 @@ namespace SpartaAcademyAPI.Data
 {
     public class SpartaAcademyContext : DbContext
     {
-        public SpartaAcademyContext(DbContextOptions<SpartaAcademyContext> options) : base(options) { }
+        private readonly IConfiguration _configuration;
+
+        public SpartaAcademyContext(DbContextOptions<SpartaAcademyContext> options, IConfiguration configuration) : base(options) 
+        {
+            _configuration = configuration;
+        }
 
 
         public DbSet<Spartan> Spartans { get; set; }
@@ -16,7 +21,7 @@ namespace SpartaAcademyAPI.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SpartaAcademy;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
             }
         }
     }

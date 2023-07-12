@@ -45,9 +45,12 @@ using (var scope = app.Services.CreateScope())
 {
     SeedData.Initialise(scope.ServiceProvider);
 }
+
+app.UseSwagger();
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    //app.UseSwagger();
     app.UseSwaggerUI();
 }
 
