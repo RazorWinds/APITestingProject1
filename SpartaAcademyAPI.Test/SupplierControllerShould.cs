@@ -2,7 +2,7 @@
 
 namespace SpartaAcademyAPI.Test
 {
-    public class Tests
+    public class SupplierControllerShould
     {
         [Category("Happy Path")]
         [Category("GetSpartans")]
@@ -25,6 +25,12 @@ namespace SpartaAcademyAPI.Test
             var sut = new SpartansController(mockService, mockMapper);
             var result = sut.GetSpartans().Result.Value;
             Assert.That(result, Is.InstanceOf<IEnumerable<SpartanDTO>>());
+        }
+
+        [Test]
+        public void FakeTest()
+        {
+            Assert.Fail();
         }
     }
 }
