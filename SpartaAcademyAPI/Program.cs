@@ -1,6 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+
 using SpartaAcademyAPI.Data;
 using SpartaAcademyAPI.Data.Repositories;
 using SpartaAcademyAPI.Models;
@@ -47,12 +47,8 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.UseSwagger();
+app.UseSwaggerUI();
 
-if (app.Environment.IsDevelopment())
-{
-    //app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.UseHttpsRedirection();
 

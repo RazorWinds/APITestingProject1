@@ -21,7 +21,7 @@ namespace SpartaAcademyAPI.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+                optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("SpartaDbConnectionString"));
             }
         }
     }
