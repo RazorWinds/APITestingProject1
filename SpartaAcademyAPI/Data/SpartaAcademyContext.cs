@@ -5,13 +5,14 @@ namespace SpartaAcademyAPI.Data
 {
     public class SpartaAcademyContext : DbContext
     {
+
         private readonly IConfiguration _configuration;
 
-        public SpartaAcademyContext(DbContextOptions<SpartaAcademyContext> options, IConfiguration configuration) : base(options) 
+        public SpartaAcademyContext(DbContextOptions<SpartaAcademyContext> options, IConfiguration configuration)
+            : base(options)
         {
             _configuration = configuration;
         }
-
 
         public DbSet<Spartan> Spartans { get; set; }
         public DbSet<Course> Courses { get; set; }
@@ -21,8 +22,19 @@ namespace SpartaAcademyAPI.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("SpartaDbConnectionString"));
+                string connectionString;
+                if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+                {
+                    connectionString = _configuration.GetConnectionString("DefaultConnection");
+                }
+                else
+                {
+                    connectionString = _configuration.GetConnectionString("SpartaAcademyAzureDb");
+                }
+
+                optionsBuilder.UseSqlServer(connectionString);
             }
         }
     }
+
 }

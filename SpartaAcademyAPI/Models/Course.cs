@@ -18,6 +18,6 @@ namespace SpartaAcademyAPI.Models
         public string Trainer { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public List<Spartan> Spartans { get; set; } = new List<Spartan>();
+        public List<Spartan> Spartans { get; set; } 
     }
 }

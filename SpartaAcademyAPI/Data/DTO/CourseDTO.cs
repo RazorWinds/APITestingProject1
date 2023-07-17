@@ -5,15 +5,18 @@ namespace SpartaAcademyAPI.Data.DTO
 {
     public class CourseDTO
     {
+        public CourseDTO()
+        {
+            Spartans = new List<string>();
+        }
         public int Id { get; set; }
         public string Name { get; set; }
-        public StreamDTO Stream { get; set; } = null!;
-        [ForeignKey("Stream")]
-        public int StreamId { get; set; }
+        public string Stream { get; set; }
+
 
         //make into Trainer class
         public string Trainer { get; set; }
-        public List<SpartanDTO> Spartans { get; set; } = new List<SpartanDTO>();
+        public List<string> Spartans { get; set; } 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

@@ -13,9 +13,14 @@ namespace SpartaAcademyAPI
                 .ForMember(dest => dest.Stream, opt => opt.MapFrom(src => src.Course.Stream.Name))
                 .ReverseMap();
 
-            CreateMap<Course, CourseDTO>().ReverseMap();
-            CreateMap<StreamDTO, Models.Stream>().ReverseMap();        
-    
+            CreateMap<Course, CourseDTO>()
+                .ForMember(dest => dest.Spartans, opt => opt.MapFrom(src => src.Spartans.Select(s => $"{s.FirstName} {s.LastName}")))
+                .ForMember(dest => dest.Stream, opt => opt.MapFrom(src => src.Stream.Name))
+                .ReverseMap()
+                .ForMember(dest => dest.Spartans, opt => opt.Ignore()); // Ignore mapping the list of Spartans back to the Course entity
+
+            CreateMap<Models.Stream, StreamDTO>().ReverseMap();
+
         }
 
     }

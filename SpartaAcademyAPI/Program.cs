@@ -1,6 +1,7 @@
 
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-
+using SpartaAcademyAPI;
 using SpartaAcademyAPI.Data;
 using SpartaAcademyAPI.Data.Repositories;
 using SpartaAcademyAPI.Models;
@@ -15,23 +16,28 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-var connectionString = builder.Configuration["DefaultConnection"];
-
-//var dbConnection = builder.Configuration["DefaultConnection"];
 
 
-builder.Services.AddDbContext<SpartaAcademyContext>(options =>
-        options.UseSqlServer(connectionString));
 
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddDbContext<SpartaAcademyContext>();
 
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+
+// Register SpartaAcademyRepository<T> as the implementation for ISpartaAcademyRepository<T>
+// This line registers the generic repository implementation for all types T
 builder.Services.AddScoped(                                                         
     typeof(ISpartaAcademyRepository<>),                                                 
     typeof(SpartaAcademyRepository<>));
-
+// Register SpartanRepository as the implementation for ISpartaAcademyRepository<Spartan>
 builder.Services.AddScoped(typeof(ISpartaAcademyRepository<>), typeof(SpartaAcademyRepository<>));
+// Register SpartanRepository as the implementation for ISpartaAcademyRepository<Spartan>
 builder.Services.AddScoped<ISpartaAcademyRepository<Spartan>, SpartanRepository>();
+// Register CourseRepository as the implementation for ISpartaAcademyRepository<Course>
+builder.Services.AddScoped<ISpartaAcademyRepository<Course>, CourseRepository>();
+// Register SpartaAcademyService<Spartan> as the implementation for ISpartaAcademyService<Spartan>
 builder.Services.AddScoped<ISpartaAcademyService<Spartan>, SpartaAcademyService<Spartan>>();
+// Register SpartaAcademyService<Course> as the implementation for ISpartaAcademyService<Course>
+builder.Services.AddScoped<ISpartaAcademyService<Course>, SpartaAcademyService<Course>>();
 
 builder.Services.AddControllers()
     .AddNewtonsoftJson(
@@ -41,19 +47,32 @@ builder.Services.AddControllers()
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+
+if (app.Environment.IsDevelopment())
 {
-    SeedData.Initialise(scope.ServiceProvider);
+    using (var scope = app.Services.CreateScope())
+    {
+        SeedData.Initialise(scope.ServiceProvider);
+    }
 }
+
 
 app.UseSwagger();
 app.UseSwaggerUI();
 
 
 app.UseHttpsRedirection();
-
+app.UseRouting();
 app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapGet("/", context =>
+    {
+        context.Response.Redirect("/swagger");
+        return Task.CompletedTask;
+    });
+});
 
-app.MapControllers();
 
 app.Run();

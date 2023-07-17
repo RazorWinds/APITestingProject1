@@ -24,7 +24,7 @@ namespace SpartaAcademyAPI.Data
                 new Models.Stream { Name = "C# Dev" },
                 new Models.Stream { Name = "C# Test" },
                 new Models.Stream { Name = "Java Dev" },
-                new Models.Stream { Name = "Jave Dev" },
+                new Models.Stream { Name = "Jave Test" },
                 new Models.Stream { Name = "Java Test" },
                 new Models.Stream { Name = "DevOps" },
                 new Models.Stream { Name = "Data" },
@@ -72,7 +72,12 @@ namespace SpartaAcademyAPI.Data
                 new Spartan { FirstName = "Wonder", LastName = "Woman", University = "Staffordshire University", Degree = "Law", Course = courses[0]},
                 new Spartan { FirstName = "Jack", LastName = "Black", University = "School of Rock", Degree = "Music",  Course = courses[1]},
                 new Spartan { FirstName = "Bill", LastName = "Withers", University = "University of Birmingham", Degree = "Biology", Course = courses[2] },
-                new Spartan { FirstName = "Super", LastName = "Man", University = "N/A", Degree = "N/A", Course = courses[3] }
+                new Spartan { FirstName = "Super", LastName = "Man", University = "N/A", Degree = "N/A", Course = courses[3] },
+                
+                new Spartan { FirstName = "Tom", LastName = "Hanks", University = "University of Washington", Degree = "Law",  Course = courses[4] },
+                new Spartan { FirstName = "Russell", LastName = "Howard", University = "University of Bristol", Degree = "Drama", Course = courses[4]},
+                new Spartan { FirstName = "Liam", LastName = "Gallagher", University = "Manchest Metropolitan University", Degree = "Music Data", Course = courses[4]},
+                new Spartan { FirstName = "Noel", LastName = "Gallagher", University = "University of Manchester", Degree = "The Beatles",  Course = courses[4]}
             };
 
             context.Spartans.AddRange(spartans);
