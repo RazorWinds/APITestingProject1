@@ -25,7 +25,7 @@ namespace SpartaAcademyAPI.Services
                 return false;
             }
 
-            _repository.Add(entity);
+            await _repository.Add(entity);
             await _repository.SaveAsync();
 
             return true;

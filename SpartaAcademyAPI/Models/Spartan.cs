@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SpartaAcademyAPI.Models
 {
-    public class Spartan
+    public class Spartan 
     {
         public int Id { get; set; }
         [Required]
@@ -19,5 +19,6 @@ namespace SpartaAcademyAPI.Models
         [ForeignKey("Course")]
         public int? CourseId { get; set; } 
         public bool Graduated { get; set; }
+
     }
 }

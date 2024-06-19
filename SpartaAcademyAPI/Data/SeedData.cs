@@ -8,9 +8,6 @@ namespace SpartaAcademyAPI.Data
         public static void Initialise(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetRequiredService<SpartaAcademyContext>();
-            context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Courses', RESEED, 0)");
-            context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Spartans', RESEED, 0)");
-            context.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Streams', RESEED, 0)");
             if (context.Courses.Any() || context.Spartans.Any() || context.Streams.Any())
             {
                 context.Courses.RemoveRange(context.Courses);
@@ -76,7 +73,7 @@ namespace SpartaAcademyAPI.Data
                 
                 new Spartan { FirstName = "Tom", LastName = "Hanks", University = "University of Washington", Degree = "Law",  Course = courses[4] },
                 new Spartan { FirstName = "Russell", LastName = "Howard", University = "University of Bristol", Degree = "Drama", Course = courses[4]},
-                new Spartan { FirstName = "Liam", LastName = "Gallagher", University = "Manchest Metropolitan University", Degree = "Music Data", Course = courses[4]},
+                new Spartan { FirstName = "Liam", LastName = "Gallagher", University = "Manchester Metropolitan University", Degree = "Music Data", Course = courses[4]},
                 new Spartan { FirstName = "Noel", LastName = "Gallagher", University = "University of Manchester", Degree = "The Beatles",  Course = courses[4]}
             };
 

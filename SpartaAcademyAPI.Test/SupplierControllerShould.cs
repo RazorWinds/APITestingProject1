@@ -11,8 +11,8 @@ namespace SpartaAcademyAPI.Test
         {
             var mockService = Mock.Of<ISpartaAcademyService<Spartan>>();
             var mockMapper = Mock.Of<IMapper>();
-            List<Spartan> spartans = new List<Spartan> ();
-            List<SpartanDTO> spartansDto = new List<SpartanDTO> ();
+            List<Spartan> spartans = new List<Spartan>();
+            List<SpartanDTO> spartansDto = new List<SpartanDTO>();
             Mock
                 .Get(mockService)
                 .Setup(sc => sc.GetAllAsync().Result)
@@ -27,10 +27,6 @@ namespace SpartaAcademyAPI.Test
             Assert.That(result, Is.InstanceOf<IEnumerable<SpartanDTO>>());
         }
 
-        [Test]
-        public void FakeTest()
-        {
-            Assert.Fail();
-        }
+
     }
 }

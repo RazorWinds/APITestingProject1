@@ -18,5 +18,8 @@ namespace SpartaAcademyAPI.Data.DTO
         public string Course { get; set; }
         public string Stream { get; set; }
         public bool Graduated { get; set; }
+
+        public List<Link> Links { get; set; } = new List<Link>();
+
     }
 }

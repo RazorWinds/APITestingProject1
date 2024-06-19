@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using SpartaAcademyAPI.Data;
 using SpartaAcademyAPI.Data.DTO;
@@ -26,18 +27,20 @@ namespace SpartaAcademyAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<CourseDTO>>> GetSpartans()
+        [HttpGet(Name = "GetCourses")]
+        public async Task<ActionResult<IEnumerable<CourseDTO>>> GetCourses()
         {
-            return _spartanService is null ? Problem("Entity set is null") : _mapper.Map<List<CourseDTO>>(await _spartanService.GetAllAsync());
+
+            return _spartanService is null ? Problem() 
+                    : _mapper.Map<List<CourseDTO>>(await _spartanService.GetAllAsync());
 
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<CourseDTO>> GetSpartan(int id)
+        [HttpGet("{id}", Name = "GetCourse")]
+        public async Task<ActionResult<CourseDTO>> GetCourse(int id)
         {
-            var spartan = await _spartanService.GetAsync(id);
-            return _spartanService is null ? Problem() : spartan is null ? NoContent() : _mapper.Map<CourseDTO>(await _spartanService.GetAsync(id));
+            return _spartanService is null ? Problem()
+                     : _mapper.Map<CourseDTO>(await _spartanService.GetAsync(id));
         }
     }
 }

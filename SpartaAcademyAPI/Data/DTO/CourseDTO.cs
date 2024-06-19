@@ -1,5 +1,4 @@
-﻿using SpartaAcademyAPI.Models;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SpartaAcademyAPI.Data.DTO
 {
@@ -19,6 +18,8 @@ namespace SpartaAcademyAPI.Data.DTO
         public List<string> Spartans { get; set; } 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public List<Link> Links { get; set; } = new List<Link>();
+
 
     }
 }

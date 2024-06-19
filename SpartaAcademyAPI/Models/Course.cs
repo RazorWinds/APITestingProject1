@@ -2,7 +2,7 @@
 
 namespace SpartaAcademyAPI.Models
 {
-    public class Course
+    public class Course 
     {
         public Course()
         {
@@ -18,6 +18,7 @@ namespace SpartaAcademyAPI.Models
         public string Trainer { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public List<Spartan> Spartans { get; set; } 
+        public List<Spartan> Spartans { get; set; }
+
     }
 }
