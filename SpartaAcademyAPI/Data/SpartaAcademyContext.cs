@@ -6,9 +6,8 @@ namespace SpartaAcademyAPI.Data
     public class SpartaAcademyContext : DbContext
     {
 
-        private readonly IConfiguration _configuration;
 
-        public SpartaAcademyContext(DbContextOptions<SpartaAcademyContext> options, IConfiguration configuration)
+        public SpartaAcademyContext(DbContextOptions<SpartaAcademyContext> options)
             : base(options){}
 
         public DbSet<Spartan> Spartans { get; set; }

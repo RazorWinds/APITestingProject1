@@ -22,27 +22,8 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<SpartaAcademyContext>();
 builder.Services.AddEndpointsApiExplorer();
 
-var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);
-builder.Services.AddAuthentication(x =>
-{
-    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(x =>
-{
-    x.RequireHttpsMetadata = false;
-    x.SaveToken = true;
-    x.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Issuer"]
-    };
-});
-
+// Use the extension method to add JWT authentication
+builder.Services.AddJwtAuthentication(builder.Configuration);
 // Add Swagger for API documentation
 builder.Services.ConfigureSwagger();
 

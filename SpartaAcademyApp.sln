@@ -5,7 +5,12 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpartaAcademyAPI", "SpartaAcademyAPI\SpartaAcademyAPI.csproj", "{EF184EB7-07D5-4CFB-B65A-2FF097260583}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpartaAcademyAPI.Test", "SpartaAcademyAPI.Test\SpartaAcademyAPI.Test.csproj", "{1CE92A7E-6D0A-4B30-8B35-E1ADEBE35B71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpartaAcademyAPI.Test", "SpartaAcademyAPI.Test\SpartaAcademyAPI.Test.csproj", "{1CE92A7E-6D0A-4B30-8B35-E1ADEBE35B71}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{436ED3EC-C457-421D-819A-3F9018B31544}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
