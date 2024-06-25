@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpartaAcademyAPI.Test", "Sp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{436ED3EC-C457-421D-819A-3F9018B31544}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		SpartaAcademyAPI\Dockerfile = SpartaAcademyAPI\Dockerfile
 		README.md = README.md
 	EndProjectSection
 EndProject
