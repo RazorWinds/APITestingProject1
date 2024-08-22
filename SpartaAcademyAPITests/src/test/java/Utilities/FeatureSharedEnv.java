@@ -1,12 +1,14 @@
 package Utilities;
 
-import Pojos.Token;
 import io.restassured.response.Response;
 
 public class FeatureSharedEnv {
     private static Response response;
     private static String token = "";
     private static String cachedValidToken = "";
+    private static int idInUse = 1;
+
+
 
     public static void setResponse(Response response) {
         FeatureSharedEnv.response = response;
@@ -18,25 +20,30 @@ public class FeatureSharedEnv {
 
     public static void setTokenValid() {
         if (cachedValidToken.isEmpty()){
-            Token tokenObject = JSONSerialise.deserialize(response.getBody().asString(), Token.class);
-            cachedValidToken = tokenObject.getToken();
+            RestAssuredUtil.requestToken("sparta", "global");
         }
         token = cachedValidToken;
     }
 
     public static String getToken() {
-        if (token.isEmpty()){
-            setTokenValid();
-        }
         return token;
+
     }
 
     public static void setTokenInvalid() {
-        token = "";
+        token = "abc";
     }
 
     public static void setCachedValidToken(String newToken){
-        cachedValidToken = newToken;
+        cachedValidToken = "Bearer "+newToken;
+    }
+
+    public static int getIdInUse() {
+        return idInUse;
+    }
+
+    public static void setIdInUse(int idInUse) {
+        FeatureSharedEnv.idInUse = idInUse;
     }
 }
 

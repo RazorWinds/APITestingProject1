@@ -1,5 +1,6 @@
 package Pojos;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Spartan implements Pojo{
@@ -9,6 +10,9 @@ public class Spartan implements Pojo{
 
 	@JsonProperty("lastName")
 	private String lastName;
+
+	@JsonProperty("stream")
+	private String stream;
 
 	@JsonProperty("university")
 	private String university;
@@ -20,13 +24,13 @@ public class Spartan implements Pojo{
 	private String degree;
 
 	@JsonProperty("course")
-	private Course course;
+	private String course;
+
+	@JsonProperty("links")
+	private List<LinksItem> links;
 
 	@JsonProperty("id")
 	private int id;
-
-	@JsonProperty("courseId")
-	private int courseId;
 
 	public void setFirstName(String firstName){
 		this.firstName = firstName;
@@ -42,6 +46,14 @@ public class Spartan implements Pojo{
 
 	public String getLastName(){
 		return lastName;
+	}
+
+	public void setStream(String stream){
+		this.stream = stream;
+	}
+
+	public String getStream(){
+		return stream;
 	}
 
 	public void setUniversity(String university){
@@ -68,12 +80,20 @@ public class Spartan implements Pojo{
 		return degree;
 	}
 
-	public void setCourse(Course course){
+	public void setCourse(String course){
 		this.course = course;
 	}
 
-	public Course getCourse(){
+	public String getCourse(){
 		return course;
+	}
+
+	public void setLinks(List<LinksItem> links){
+		this.links = links;
+	}
+
+	public List<LinksItem> getLinks(){
+		return links;
 	}
 
 	public void setId(int id){
@@ -82,13 +102,5 @@ public class Spartan implements Pojo{
 
 	public int getId(){
 		return id;
-	}
-
-	public void setCourseId(int courseId){
-		this.courseId = courseId;
-	}
-
-	public int getCourseId(){
-		return courseId;
 	}
 }

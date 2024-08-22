@@ -47,4 +47,38 @@ public class RestAssuredUtil {
                 .addHeader("Authorization", token)
                 .build();
     }
+
+    public static RequestSpecification getSpartanByIDSpec(String token, int ID){
+        return new RequestSpecBuilder()
+                .setBaseUri("http://localhost:8080/")
+                .setBasePath("api/Spartans/"+ID)
+                .addHeader("Authorization", token)
+                .build();
+    }
+
+    public static RequestSpecification getAllSpartansSpec(String token){
+        return new RequestSpecBuilder()
+                .setBaseUri("http://localhost:8080/")
+                .setBasePath("api/spartans")
+                .addHeader("Authorization", token)
+                .build();
+    }
+
+    public static RequestSpecification createSpartanSpec(String token, String JSON){
+        return new RequestSpecBuilder()
+                .setBaseUri("http://localhost:8080/")
+                .setBasePath("api/spartans")
+                .addHeader("Authorization", token)
+                .setBody(JSON)
+                .build();
+    }
+
+    public static RequestSpecification updateSpartanSpec(String token, int ID, String JSON){
+        return new RequestSpecBuilder()
+                .setBaseUri("http://localhost:8080/")
+                .setBasePath("api/spartans/"+ID)
+                .addHeader("Authorization", token)
+                .setBody(JSON)
+                .build();
+    }
 }
